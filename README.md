@@ -19,6 +19,7 @@ O prazo para disponibilização de todo o conteúdo foi de até 05 (dias).
     - **[Maven](https://mvnrepository.com/)**
     - **[H2 Database](http://h2database.com/html/main.html)**
     - **[Lombok](https://projectlombok.org/)**
+    - **[JUnit](https://junit.org/junit5/)**
 
 * Para o front-end
 
@@ -48,29 +49,29 @@ O prazo para disponibilização de todo o conteúdo foi de até 05 (dias).
     - Kibana
 
 
-## Rodando o projeto: :computer:
+## Rodando o projeto em ambiente Linux: :computer:
 
-* Para configurar a API é necessário, a partir de um terminal Linux:
+Para este projeto foram criadas duas imagens indpependentes utilizando Docker:
 
-    - Build do container, utilizando o arquivo "Dockerfile" na pasta Docker:
-     ```
-    > docker build -t java-api .
-    ```
-    - Gerar imagem do container com o comando: 
-    ```
-    > docker run -p 8080:8080 --name javaapi java-api
-    ```
+    * Docker image ( 1 ) - Nome: java-api - Caminho: /Docker/Dockerfile
+    * Docker image ( 2 ) - Nome: angular-app - Caminho: /ensino-adm-app/Dockerfile
 
-* Para configurar a interface do sistema:
 
-    - Rodar no terminal Linux, na pasta "ensino-adm-app", o comando
-    ```
-    > docker build -t angular-app .
-    ```
-    - Gerar imagem do container com o comando:
-    ```
-    > docker run -p 4200:4200 --name angularapp angular-app
-    ```
+Para configurar a API rodar os comandos abaixo na pasta /Docker:
+
+```
+$ docker build -t java-api .
+
+$ docker run -p 8080:8080 --name javaapi java-api
+```
+
+Para configurar a aplicação, para acesso no navegador, executar os comandos abaixo na pasta /ensino-adm-app:
+
+```
+$ docker build -t angular-app .
+
+$ docker run -p 4200:4200 --name angularapp angular-app
+```
 
 
 ## Testando os endpoints via terminal:  :computer:
@@ -79,31 +80,36 @@ Na pasta Docker, enviar os métodos post e get:
 
 ### Post
 ```
-> curl -i -X POST -H "Content-Type: application/json" -d "{\"nome\":\"wagner\",\"cpf\":\"43236560177\",\"nascimento\":\"1978-09-12\",\"sexo\":\"M\",\"email\":\"wagnerjf@gmai.com\"}" http://localhost:8080/api/professores
+$ curl -i -X POST -H "Content-Type: application/json" -d "{\"nome\":\"wagner\",\"cpf\":\"43236560177\",\"nascimento\":\"1978-09-12\",\"sexo\":\"M\",\"email\":\"wagnerjf@gmai.com\"}" http://localhost:8080/api/professores
 ```
 
 ### Get
 ```
-> curl -i -H "Accept: application/json" -H "Content-Type application/json" -X GET http://localhost:8080/api/professores/1
+$ curl -i -H "Accept: application/json" -H "Content-Type application/json" -X GET http://localhost:8080/api/professores/1
 ```
 
 
 ## Acesso a aplicação no navegador: :computer:
 
-* Endpoints da API - http://localhost:8080
+### Endpoints da API - http://localhost:8080
 
     - **[ GET ](http://localhost:8080/api/professores/1)**
     - **[ POST ](http://localhost:8080/api/professores)**
     - **[ PUT ](http://localhost:8080/api/professores/1)**
     - **[ DELETE ](http://localhost:8080/api/professores/1)**
 
-* App Web (Interface Angular)
+### App Web (Interface Angular)
 
     - **[ Home ](http://localhost:4200)**
     - **[ Lista Professores ](http://localhost:4200/cadastros/professores-lista)**   
     - **[ Cadastra Professores ](http://localhost:4200/cadastros/professores)**
 
 
+## Teste unitários :computer:
+
+Para rodar os teste unitários pelo IntelliJ, executar a função Run 'AllTests' (botão direito na pasta test/java).
+
+![picture](doc/img007_UnitTest.png)
 
 
 ## Screen Shots da Aplicação Feita:
