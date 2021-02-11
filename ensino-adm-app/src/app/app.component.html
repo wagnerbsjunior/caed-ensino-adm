@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<div id="layoutSidenav">
+    <app-sidebar></app-sidebar>
+    <div id="layoutSidenav_content">
+        <main>
+            <!--CONTEÚDO PRINCIPAL -->
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
+            <!--RODAPÉ DA APLICAÇÃO -->
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Institucional 2021</div>
+                        <div>
+                            <a href="#">Politicas</a>
+                            &middot;
+                            <a href="#">Termos &amp; Condicoes</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!--FIM RODAPÉ DA APLICAÇÃO -->
+        </main>
+    </div>    
+</div>

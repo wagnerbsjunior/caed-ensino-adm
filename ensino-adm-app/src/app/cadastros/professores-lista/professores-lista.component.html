@@ -1,0 +1,82 @@
+<h1 class="mt-4">Professores</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Consulta</li>
+</ol>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+               {{ mensagemSucesso }}
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+                {{ mensagemErro }}
+            </div>
+        </div>            
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <button class="btn btn-warning" (click)="novoRegistro()">
+                <i class="fa fa-plus"></i> Novo
+            </button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="table-responsive col-md-12">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Email</th>
+                        <th>Idade</th>
+                        <th>Sexo</th>
+                        <th>Data Cadastro</th>
+                        <th>Data Alteração</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let professor of professores">
+                        <td>{{ professor.id }}</td>
+                        <td>{{ professor.nome }}</td>
+                        <td>{{ professor.cpf }}</td>
+                        <td>{{ professor.email }}</td>
+                        <td>{{ professor.idade }}</td>
+                        <td>{{ professor.sexo }}</td>
+                        <td>{{ professor.dataCriacao }}</td>
+                        <td>{{ professor.dataAlteracao }}</td>
+                        <td>
+                            <button class="btn btn-primary" routerLink="/cadastros/professores/{{ professor.id }}">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger ml-1" (click)="preparaDelecao(professor)"
+                                data-toggle="modal" data-target="#modalDelecao">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modalDelecao" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Confirmação</h4>
+                </div>
+                <div class="modal-body" *ngIf="professorSelecionado">
+                    Confirma a delação do registro {{ professorSelecionado.nome }}?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" (click)="deletarProfessor()" data-dismiss="modal">Confirmar</button>
+                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            ></div>
+        </div>
+    </div>
+</div>
