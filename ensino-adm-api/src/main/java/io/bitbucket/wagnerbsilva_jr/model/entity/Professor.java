@@ -5,16 +5,21 @@ import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
-import javax.swing.text.DateFormatter;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 @Entity
 @Data
-public class Professor extends Pessoa {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Professor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,13 +57,32 @@ public class Professor extends Pessoa {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataAlteracao;
 
-    /*public Professor(String nome, String cpf, String nascimento, String sexo, String email) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.nascimento = LocalDate.parse(nascimento,DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        this.sexo = sexo;
-        this.email = email;
-    }*/
+
+    //--Método para calcular a idade da pessoa
+    private Integer calcIdade (String nascimento){
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date dataNascInput = null;
+
+        try {
+            dataNascInput= sdf.parse(nascimento);
+        } catch (Exception e) {}
+
+        Calendar dateOfBirth = new GregorianCalendar();
+        dateOfBirth.setTime(dataNascInput);
+
+        // Cria um objeto calendar com a data atual
+        Calendar today = Calendar.getInstance();
+
+        // Obtém a idade baseado no ano
+        int idade = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
+
+        dateOfBirth.add(Calendar.YEAR, idade);
+
+        if (today.before(dateOfBirth)) {
+            idade--;
+        }
+        return idade;
+    }
 
     @PrePersist
     public void prePersist(){
