@@ -1,8 +1,6 @@
-# Projeto CAEd - JAVA + Spring Boot + Angular
+# Projeto JAVA + Spring Boot + Angular
 
-Este repositório armazena o código fonte desenvolvido por mim durante o periodo de participação do [.PROCESSO SELETIVO Nº 001/2021](http://fundacaocaed.org.br/#!/processoseletivos), para a vaga de desenvolvedor full stack.
-
-O prazo para disponibilização de todo o conteúdo foi de até 05 (dias).
+Este repositório armazena o código fonte desenvolvido por mim, visando principalmente o desenvolvimento de um projeto RestFULL com Java e Angular.
 
 
 ## Descrição do projeto: :pencil2:
@@ -34,9 +32,9 @@ O prazo para disponibilização de todo o conteúdo foi de até 05 (dias).
     - **[Docker](https://www.docker.com/)**
 
 
-## Diferenciais de avaliação: :pencil2:
+## Implementações adicionais: :pencil2:
 
- * **< Feito > Criar um front end usando AngularJs para envio das requisições**
+ * **< Feito > Criar um front end usando também VueJS para envio das requisições**
  * **< Feito > Criar testes unitários**
  * **< Feito > Executar os serviços em containers docker**
  * Usar alguma ferramenta para auxiliar na comunicação entre os serviços
