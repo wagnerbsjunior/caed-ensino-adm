@@ -1,0 +1,14 @@
+version: '3.5'
+
+services: 
+    back-end:
+      container_name: javaapi
+      build: .
+      ports: 
+        - 8080:8080
+
+    front-end:
+      container_name: angularapp
+      build: ../ensino-adm-app
+      ports:
+        - 4200:4200
